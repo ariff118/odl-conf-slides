@@ -1,0 +1,136 @@
+---
+title: "Data Analysis"
+subtitle: "Results and Findings"
+format:
+  revealjs: 
+    theme: simple
+    slide-number: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    # logo: images/profile1.jpeg
+    # css: styles.css
+    # footer: <https://scmathuitmkedah.github.io/STA404/>
+resources:
+  - chi-sq.pdf
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::read_chunk("descriptive.R")
+library(readxl)
+library(data.table)
+library(ggplot2)
+library(likert)
+library(rmarkdown)
+library(tidyverse) # for all things data wrangling
+library(kableExtra) # make nice looking output tables
+library(stargazer)
+library(gt)
+```
+
+## Survey Information {background-image="bg1.png"}
+
+::: incremental
+
+- Two branch campuses: **Perlis** and **Kedah**  
+- Responses received: `1793` respondents  
+- Usable responses (after NA's removal): `1652` respondents  
+- Sampling: **Convenient Sampling**  
+- Data collection method: **Internet Survey**  
+- Demography: **Campus, Semester, Gender**  
+- ODL: 10 items using 5-point Likert Scale (SD, D, N, A, SA)
+
+:::
+
+## My Code {background-image="bg1.png"}
+
+```{r Code, echo=FALSE, message=FALSE, warning=FALSE}
+
+```
+
+## My Data {background-image="bg1.png"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+str(dt)
+```
+
+## 1. Descriptive Summary by Campus (Demography) {background-image="bg1.png"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+<br>
+<center>
+```{r table1, echo=FALSE, fig.height=4, fig.width=6, message=FALSE, warning=FALSE, paged.print=TRUE}
+
+#| label: tbl-1
+#| tbl-cap: "Demographic Profile Summary"
+#| tbl-subcap: 
+#|   - "Gender"
+#|   - "Semester"
+#| layout-ncol: 2
+#| echo: fenced
+
+gt_freq_demo_by_campus
+```
+</center>
+:::
+
+::: {.column width="50%"}
+This table summarizes the demographic profiling of the respondents according to their origin campuses. The distribution of the gender is consistent with proportion of Male and Female in the population.
+:::
+
+::::  
+
+## 2. Descriptive Summary by Campus (ODL) {background-image="bg1.png"}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+```{r echo=FALSE, fig.height=4, fig.width=6, message=FALSE, warning=FALSE, paged.print=TRUE}
+gt_freq_odl_by_campus_1
+```
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+```{r echo=FALSE, fig.height=4, fig.width=6, message=FALSE, warning=FALSE, paged.print=TRUE}
+gt_freq_odl_by_campus_2
+```
+
+:::
+
+::::
+<center><p>**Indicator**: <br>
+1.00 - 1.60 (-VE); 1.61 - 3.20 (Average); 3.21 - 5.00 (+VE)</p></center>
+
+## Summary of Likert Scales on ODL {background-image="bg1.png"}
+
+::: {.panel-tabset}  
+
+### Graphical Display
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+final_plot
+```
+
+### Discussion
+- There are still a lot of improvement that can be taken to ensure that students has the highest satisfation on ODL experiences.  
+- assessment information, feedback, information delivery and learning duration seems to be in the right path towards positive ODL expriences.  
+- however, comfortable study environment, accessibility to online resources, and collaborative study activities are still need a lot of improvement.
+
+:::
+
+## Independent Sample t-Test of ODL on Campus {background-image="bg1.png"}
+
+![*Table 5* Summary results of independent sample t-Test](full_t_test.png)
+Based on the results shown above, it indicates that there is not enough evidence that there exist signigicant difference on ODL experiences between the two campuses.  
+
